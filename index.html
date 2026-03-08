@@ -34,39 +34,41 @@
     <div class="background-layer"></div>
     <!-- Cabeçalho fixo com marca, idioma, instalação e troca de tema -->
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="ALFA home">
-        <span class="brand-mark">A</span>
-        <span class="brand-copy">
-          <strong>ALFA</strong>
-          <span data-i18n="brandTag">Software studio</span>
-        </span>
-      </a>
+      <div class="site-header-inner">
+        <a class="brand" href="#top" aria-label="ALFA home">
+          <span class="brand-mark">A</span>
+          <span class="brand-copy">
+            <strong>ALFA</strong>
+            <span data-i18n="brandTag">Software studio</span>
+          </span>
+        </a>
 
-      <div class="header-controls">
-        <button
-          class="control-button"
-          id="language-toggle"
-          type="button"
-          aria-label="Switch language"
-        >
-          PT
-        </button>
-        <button
-          class="control-button control-button-install"
-          id="install-button-header"
-          type="button"
-          data-i18n="installAppShort"
-        >
-          Instalar
-        </button>
-        <button
-          class="control-button"
-          id="theme-toggle"
-          type="button"
-          aria-label="Alternar tema"
-        >
-          <span data-i18n="themeButton">Modo claro</span>
-        </button>
+        <div class="header-controls">
+          <button
+            class="control-button"
+            id="language-toggle"
+            type="button"
+            aria-label="Switch language"
+          >
+            PT
+          </button>
+          <button
+            class="control-button control-button-install"
+            id="install-button-header"
+            type="button"
+            data-i18n="installAppShort"
+          >
+            Instalar
+          </button>
+          <button
+            class="control-button"
+            id="theme-toggle"
+            type="button"
+            aria-label="Alternar tema"
+          >
+            <span data-i18n="themeButton">Modo claro</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -269,8 +271,19 @@
       target="_blank"
       rel="noreferrer"
       aria-label="WhatsApp"
+      title="WhatsApp"
     >
-      <span>WhatsApp</span>
+      <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          d="M19.11 17.18c-.27-.13-1.58-.78-1.82-.87s-.41-.13-.58.13-.68.87-.83 1.05-.3.2-.57.07c-.27-.13-1.15-.42-2.18-1.33-.81-.72-1.36-1.6-1.52-1.87s-.02-.41.11-.55c.12-.12.27-.3.4-.45.13-.15.18-.25.27-.42s.04-.32-.02-.45c-.07-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44h-.5c-.17 0-.45.07-.68.32s-.9.88-.9 2.14.92 2.48 1.05 2.65 1.8 2.75 4.36 3.85c.61.26 1.09.41 1.47.53.62.2 1.18.17 1.62.1.5-.08 1.58-.65 1.8-1.27.22-.62.22-1.15.15-1.27-.07-.12-.24-.2-.5-.33Z"
+        />
+        <path
+          fill="currentColor"
+          d="M16.02 3.2c-7.05 0-12.77 5.67-12.77 12.66 0 2.23.58 4.41 1.69 6.33L3.2 28.8l6.8-1.78a12.9 12.9 0 0 0 6.02 1.49c7.04 0 12.78-5.68 12.78-12.67S23.06 3.2 16.02 3.2Zm0 23.06c-1.97 0-3.89-.53-5.56-1.54l-.4-.24-4.04 1.05 1.08-3.92-.26-.4a10.4 10.4 0 0 1-1.62-5.53c0-5.74 4.84-10.41 10.8-10.41 5.94 0 10.78 4.67 10.78 10.4 0 5.75-4.84 10.6-10.78 10.6Z"
+        />
+      </svg>
+      <span class="sr-only">WhatsApp</span>
     </a>
 
     <!-- Modal compartilhado com ajuda de instalação para iOS, file:// e navegadores sem suporte -->

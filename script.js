@@ -343,6 +343,7 @@ const themeToggle = document.getElementById("theme-toggle");
 const heroQuoteButton = document.getElementById("hero-quote-button");
 const footerQuoteButton = document.getElementById("footer-quote-button");
 const floatingWhatsAppButton = document.getElementById("floating-whatsapp-button");
+const ctaSection = document.querySelector(".cta-section");
 const themeColorMeta = document.getElementById("theme-color-meta");
 const installButtonHeader = document.getElementById("install-button-header");
 const installButtonHero = document.getElementById("install-button-hero");
@@ -392,6 +393,15 @@ function getGeneralQuoteMessage(language) {
 // Personaliza a mensagem do CTA de serviço com o nome do serviço escolhido.
 function getServiceQuoteMessage(language, serviceTitle) {
   return translations[language].serviceQuoteMessage.replace("{service}", serviceTitle);
+}
+
+// Alterna a visibilidade do botao flutuante quando o CTA principal entra na tela.
+function updateFloatingWhatsAppVisibility(shouldHide) {
+  if (!floatingWhatsAppButton) {
+    return;
+  }
+
+  floatingWhatsAppButton.classList.toggle("is-hidden", shouldHide);
 }
 
 // Retorna o conteúdo localizado do modal para o cenário ativo de ajuda de instalação.
@@ -588,7 +598,14 @@ function updateTranslatableContent() {
   heroQuoteButton.href = generalQuoteLink;
   footerQuoteButton.href = generalQuoteLink;
   floatingWhatsAppButton.href = generalQuoteLink;
-  floatingWhatsAppButton.querySelector("span").textContent = copy.floatingWhatsApp;
+  floatingWhatsAppButton.setAttribute("aria-label", copy.floatingWhatsApp);
+  floatingWhatsAppButton.setAttribute("title", copy.floatingWhatsApp);
+
+  const floatingWhatsAppLabel = floatingWhatsAppButton.querySelector(".sr-only");
+
+  if (floatingWhatsAppLabel) {
+    floatingWhatsAppLabel.textContent = copy.floatingWhatsApp;
+  }
 
   if (installHelpPanel && !installHelpPanel.hidden) {
     renderInstallHelp();
@@ -628,6 +645,37 @@ function registerServiceWorker() {
       console.error("Service worker registration failed:", error);
     });
   });
+}
+
+// Esconde o botao flutuante quando a secao final de orcamento estiver visivel.
+function registerFloatingWhatsAppBehavior() {
+  if (!floatingWhatsAppButton || !ctaSection) {
+    return;
+  }
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        updateFloatingWhatsAppVisibility(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2
+      }
+    );
+
+    observer.observe(ctaSection);
+    return;
+  }
+
+  const onScroll = () => {
+    const rect = ctaSection.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    updateFloatingWhatsAppVisibility(isVisible);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 }
 
 // Conecta o fluxo de instalação, os controles do modal e os listeners de estado.
@@ -691,5 +739,6 @@ themeToggle.addEventListener("click", () => {
 // Inicialização da página.
 applyTheme();
 applyLanguage();
+registerFloatingWhatsAppBehavior();
 registerInstallExperience();
 registerServiceWorker();
