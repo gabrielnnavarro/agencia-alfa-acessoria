@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <!-- Identificação semântica da marca para leitores de tela -->
-  <title id="title">ALFA TECH Studio</title>
-  <desc id="desc">Símbolo moderno da ALFA TECH Studio com monograma geométrico e acabamento limpo.</desc>
+  <title id="title">ALFA Tech Systems</title>
+  <desc id="desc">Símbolo moderno da ALFA Tech Systems com monograma geométrico e acabamento limpo.</desc>
   <defs>
     <!-- Gradientes principais usados na superfície e nos traços da marca -->
     <linearGradient id="surface" x1="16" y1="8" x2="112" y2="120" gradientUnits="userSpaceOnUse">
